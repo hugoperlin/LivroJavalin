@@ -144,7 +144,7 @@ O método `start(8080)` cria um processo que mantém a JVM em execução contín
    ```
 5. Você verá na tela:
    ```
-   Parabéns! Seu servidor Javalin está funcionando com sucesso!
+   Hello World!!
    ```
 6. Agora, altere a URL no navegador para:
    ```
