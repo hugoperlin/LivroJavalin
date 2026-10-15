@@ -40,7 +40,7 @@ No entanto, quando começamos a estudar **Orientação a Objetos (POO)**, o cons
 
 ## 2. A Mudança de Paradigma: Arquitetura Cliente-Servidor
 
-No desenvolvimento de software profissional, quase nenhum sistema de gestão opera através do terminal do sistema operacional. Em vez disso, adotamos a **Arquitetura Cliente-Servidor**:
+No desenvolvimento de software, quase nenhum sistema de gestão opera através do terminal do sistema operacional. Em vez disso, adotamos a **Arquitetura Cliente-Servidor** para implementar sistemas web:
 
 ```
 +-------------------------------------------------------------+
@@ -141,6 +141,28 @@ public class App {
 ```
 
 Note a clareza: você chamou um método estático `create()`, encadeou o método `start(8080)` e registrou uma rota `get`. Não há arquivos XML de configuração, nem reflexão oculta. Tudo o que você aprendeu sobre chamadas de métodos e objetos se aplica diretamente.
+
+
+### 4.1 Classe JavalinUtils.java
+
+O Javalin aceita uma série de configurações para melhorar a usabilidade do framework. Para facilitar o uso, foi desenvolvida uma classe de apoio [`JavalinUtils`](https://github.com/ifpr-pgua-tads-oo-2026/javalin_base/blob/main/src/main/java/br/edu/ifpr/pgua/eic/tads/utils/JavalinUtils.java), que encapsula todo um conjunto de configurações e expõe um único método `makeApp(int porta)`. Isso facilita o uso do Javalin.
+
+```java
+
+public class App {
+    public static void main( String[] args ){
+        var app = JavalinUtils.makeApp(8080);
+        
+        app.get("/",ctx->ctx.result("Olá Mundo!!"));
+        
+    }
+}
+
+
+```
+
+
+
 
 ---
 

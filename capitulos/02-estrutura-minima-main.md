@@ -18,30 +18,45 @@ Crie um projeto Maven simples e certifique-se de que o seu arquivo `pom.xml` con
     <artifactId>oo-javalin</artifactId>
     <version>1.0.0</version>
 
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+  </properties>
 
-    <dependencies>
-        <!-- Servidor Web Javalin -->
-        <dependency>
-            <groupId>io.javalin</groupId>
-            <artifactId>javalin</artifactId>
-            <version>7.2.3</version>
-        </dependency>
+  
 
-        <!-- Biblioteca de Logs (evita avisos no terminal) -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>2.0.12</version>
-        </dependency>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
 
-        <!-- NOVAS DEPENDÊNCIAS VÃO AQUI! -->
+    <dependency>
+        <groupId>io.javalin</groupId>
+        <artifactId>javalin-bundle</artifactId>
+        <version>6.7.0</version>
+    </dependency>
+    <dependency>
+        <groupId>io.javalin</groupId>
+        <artifactId>javalin-rendering</artifactId>
+        <version>6.7.0</version>
+    </dependency>
 
-    </dependencies>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>2.0.16</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.thymeleaf</groupId>
+      <artifactId>thymeleaf</artifactId>
+      <version>3.1.5.RELEASE</version>
+    </dependency>
+  </dependencies>
 </project>
 ```
 
@@ -94,10 +109,11 @@ public class App {
 
     public static void main(String[] args) {
         
-        var app = Javalin.create(config -> {
-        config.routes.get("/", ctx -> ctx.result("Hello World"));
-        }).start(7070);
-    
+        var app = JavalinUtils.makeApp(8080);
+
+        app.get("/", ctx -> ctx.result("Servidor Javalin on-line"));
+        app.get("/boas-vindas", ctx -> ctx.result("Olá Mundo!!")); 
+
     }
 }
 ```
@@ -129,13 +145,13 @@ Javalin.create().start(8080)
           Aguardando conexões de navegadores e clientes.
 ```
 
-O método `start(8080)` cria um processo que mantém a JVM em execução contínua. Enquanto você não interromper o processo (por exemplo, pressionando `Ctrl + C` no terminal ou clicando no botão "Stop" da sua IDE), o seu servidor continuará vivo, pronto para responder requisições a qualquer momento.
+O método `makeApp(8080)` cria um processo que mantém a JVM em execução contínua. Enquanto você não interromper o processo (por exemplo, pressionando `Ctrl + C` no terminal ou clicando no botão "Stop" da sua IDE), o seu servidor continuará vivo, pronto para responder requisições a qualquer momento.
 
 ---
 
 ## 5. Testando no Navegador
 
-1. Execute a classe `App` na sua IDE (ou com o comando `mvn compile exec:java -Dexec.mainClass="br.edu.tads.App"`).
+1. Execute a classe `App` na sua IDE.
 2. Observe as mensagens informativas no terminal (logs do Javalin e Jetty informando que a porta 8080 está aberta).
 3. Abra seu navegador de internet favorito (Chrome, Firefox, Edge).
 4. Na barra de endereços, digite:
@@ -144,12 +160,13 @@ O método `start(8080)` cria um processo que mantém a JVM em execução contín
    ```
 5. Você verá na tela:
    ```
-   Hello World!!
+   Servidor Javalin on-line
    ```
 6. Agora, altere a URL no navegador para:
    ```
    http://localhost:8080/boas-vindas
    ```
 7. A resposta mudará instantaneamente!
+8. Observe a saída do terminal em sua IDE. Você verá as requisições http que foram recebidas e processadas pelo servidor.
 
 Você acaba de criar e testar seu primeiro servidor web utilizando apenas Java puro e um microframework enxuto. No próximo capítulo, vamos entender detalhadamente o que são **rotas**, **endpoints** e os **verbos HTTP**.
