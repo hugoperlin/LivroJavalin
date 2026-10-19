@@ -108,7 +108,7 @@ No exemplo abaixo é definido um formulário com dois campos de texto, um para o
 </html>
 ```
 
-No servidor, definiremos um método para acessar e manipular os dados enviados pelo corpo do formulário. Isso será feito através do método `bodyParam` do objeto `Context`. Esse método recebe como parâmetro uma string que representa o nome do elemento html.
+No servidor, definiremos um método para acessar e manipular os dados enviados pelo corpo do formulário. Isso será feito através do método `formParam` do objeto `Context`. Esse método recebe como parâmetro uma string que representa o nome do elemento html.
 
 ```java
 
@@ -119,8 +119,8 @@ public class CadastroControler{
     }
 
     public void post(Context ctx){
-        String nome = ctx.bodyParam("nome");
-        String email = ctx.bodyParam("email");
+        String nome = ctx.formParam("nome");
+        String email = ctx.formParam("email");
 
         //... Enviar os dados para uma classe responsável pelo cadastro
 
@@ -213,8 +213,8 @@ public class CadastroController{
     }
 
     public void post(Context ctx){
-        String nome = ctx.bodyParam("nome");
-        String email = ctx.bodyParam("email");
+        String nome = ctx.formParam("nome");
+        String email = ctx.formParam("email");
 
         String resultado = gerenciador.adicionar(nome,email);
 
