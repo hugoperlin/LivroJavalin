@@ -44,16 +44,12 @@ Caso você pretenda conectar o seu sistema em um banco de dados MySQL/MariaDB, v
 
 ```
 
+Dica: No VSCode utilize a extensão [MySql](https://marketplace.visualstudio.com/items?itemName=cweijan.vscode-mysql-client2) para mainuplar banco de dados, inclusive SQLite.
+
 
 ## 2. Principais Classes do JDBC
 
 O JDBC utiliza quatro interfaces principais do pacote `java.sql` para conectar o código Java a um banco de dados relacional.
-
-┌──────────────┐       ┌────────────┐             ┌───────────────────┐             ┌───────────┐
-│ DriverManager            │ ─►│ Connection            │ ───► │ PreparedStatement                 │ ───► │            ResultSet │
-└──────────────┘       └────────────┘              └───────────────────┘             └───────────┘
- Carrega o driver     Abre a sessão       Prepara o comando SQL       Lê os dados
-
 
 ---
 
@@ -104,7 +100,7 @@ As operações do JDBC podem gerar exceções do tipo `SQLException`. Assim é o
 
 Note que na sintaxa do bloco `try` temos a definição de uma instrução dentro dos parênteses, que é instanciação de um objeto do tipo `Connection`. Este tipo de bloco é chamado `try-with-resources`. A grande vantagem de uso deste tipo de bloco é que ao final da execução a conexão é automaticamente fechada, mesmo em caso de erro.
 
-Outro ponto importante de ser comentado é que o método `getConnection` recebe como parâmetro uma string que especifica a url de conexção com o banco de dados. No caso `jdbc:sqlite:app.db`, significa que esta conexão irá utilizar o padrão JDBC, para conectar a um banco sqlite que estará armazenado no arquivo `app.db`. 
+Outro ponto importante de ser comentado é que o método `getConnection` recebe como parâmetro uma string que especifica a url de conexção com o banco de dados. No caso `jdbc:sqlite:app.db`, significa que esta conexão irá utilizar o padrão JDBC, para conectar a um banco sqlite que estará armazenado no arquivo `app.db`. O arquivo será criado dentro da pasta raiz do projeto (na mesma pasta onde está o arquivo `pom.xml`).
 
 Os parâmetro de conexão com um banco de dados MySQL são um pouco diferentes. A url geralmente tem o formato `jdbc:mysql://IP_DO_SERVIDOR/NOME_DO_BANCO`. Também devem ser passados como parâmetros o usuário e senha de acesso ao banco.
 
