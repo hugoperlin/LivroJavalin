@@ -8,3 +8,4 @@
 * [03. Endpoints e Verbos HTTP na Prática](capitulos/03-endpoints-verbos-http.md)
 * [04. Renderização de Html e Formulários](capitulos/04-renderizacao-e-formularios.md)
 * [05. JDBC](capitulos/05-jdbc.md)
+* [06. Interfaces e Padrões de Projeto](capitulos/06-interfaces-padroes.md)
